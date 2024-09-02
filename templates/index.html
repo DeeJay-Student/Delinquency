@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5 main-container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h1 class="card-title text-center mb-4">Forecast App</h1>
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label">Select Excel File</label>
+                            <input class="form-control" type="file" id="fileInput" accept=".xlsx">
+                        </div>
+                        <button id="uploadBtn" class="btn btn-primary w-100">
+                            <i class="fas fa-upload me-2"></i>Upload and Process
+                        </button>
+                        <div id="message" class="alert mt-3 d-none"></div>
+                        <div id="spinner" class="text-center mt-3 d-none">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="results" class="mt-5 d-none">
+                    <div class="card shadow-lg mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">Historical Data</h2>
+                            <img id="historicalChart" class="img-fluid" alt="Historical Data Chart">
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow-lg mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">Forecast</h2>
+                            <img id="forecastChart" class="img-fluid" alt="Forecast Chart">
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h2 class="card-title">Forecasted Values</h2>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Delinquency Rate (%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="forecastTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
